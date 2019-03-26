@@ -23,8 +23,8 @@ public class Merge{
    }
    int pivot = ((high - low) / 2) + low; // finds center (similar to optimized quick)
 
-   // mergesort(data, low, pivot); //mergesort left side
-   //  mergesort(data, pivot, high); //mergesort right side
+   new int[] leftSide = mergesort(data2, data, low, pivot); //mergesort left side
+   new int[] rightSide = mergesort(data2, data, pivot+1, high); //mergesort right side
 
    int leftInd = low;
    int rightInd = pivot;
