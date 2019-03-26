@@ -67,23 +67,23 @@ public class Merge{
   public static void glue (int[] data, int[] data2, int pivot, int low, int high){
     int leftInd = 0;
     int rightInd = 0;
-    while(leftInd < pivot - lo + 1 && rightInd < high - pivot){
-      int low = leftInd + lo;
-      if(temp[low] < temp[rightInd + pivot + 1]){
-        data[low + rightInd] = temp[low];
+    while(leftInd < pivot - low + 1 && rightInd < high - pivot){
+      int index = leftInd + low;
+      if(data2[index] < data2[rightInd + pivot + 1]){
+        data[index + rightInd] = data2[low];
         leftInd++;
       }
       else{
-        data[low + rightInd] = temp[rightInd + pivot + 1];
+        data[index + rightInd] = data2[rightInd + pivot + 1];
         rightInd++;
       }
     }
     while(leftInd < pivot - low + 1){
-      data[lo + leftInd + rightInd] = temp[lo + leftInd];
+      data[low + leftInd + rightInd] = data2[low + leftInd];
       leftInd++;
       }
     while(rightInd < high - pivot){
-      data[lo + leftInd + rightInd] = temp[rightInd + pivot + 1];
+      data[low + leftInd + rightInd] = data2[rightInd + pivot + 1];
       rightInd++;
     }
 }
