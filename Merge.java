@@ -43,7 +43,7 @@ public class Merge{
     for(int ind = 0; ind < array.length; ind++){
       array[ind]= data[ind];
     }
-    if( array.length < 50){
+    if( array.length < 50){ // range that works well 45-55
       insertionSort(data);
     }
     else{
