@@ -44,11 +44,10 @@ public class Merge{
       array[ind]= data[ind];
     }
     if( array.length < 50){
-      insertionSort(array);
+      insertionSort(data);
     }
     else{
       mergesort(data, array, 0, data.length - 1);
-
     }
   }
 
@@ -56,12 +55,13 @@ public class Merge{
     if(low >= high){
       return;
     }
-    int pivot = ((high - low) / 2) + low; // finds center (similar to optimized quick)
+    int pivot = ((high - low) / 2) + low;// add low to shift // finds center (similar to optimized quick)
 
     mergesort(data2, data, low, pivot); //mergesort left side
+
     mergesort(data2, data, pivot+1, high); //mergesort right side
 
-    glue(data2, data, pivot, low, high);
+    glue(data, data2, pivot, low, high); //combine both merges
   }
 
   public static void glue (int[] data, int[] data2, int pivot, int low, int high){
@@ -70,7 +70,7 @@ public class Merge{
     while(leftInd < pivot - low + 1 && rightInd < high - pivot){
       int index = leftInd + low;
       if(data2[index] < data2[rightInd + pivot + 1]){
-        data[index + rightInd] = data2[low];
+        data[index + rightInd] = data2[index];
         leftInd++;
       }
       else{
@@ -87,6 +87,14 @@ public class Merge{
       rightInd++;
     }
 }
+
+public static String toString(int[] sorted) {
+   String result = "";
+   for (int x = 0; x < sorted.length; x++) {
+     result += x + " ";
+   }
+   return result;
+ }
 
 // Pseudo code
 /*mergesort(data,lo,high):
