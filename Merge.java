@@ -3,6 +3,8 @@ import java.io.*;
 
 public class Merge{
 
+// got help from geena, oliver and alex during open house
+
   public static void main(String[]args){
     System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
     int[]MAX_LIST = {1000000000,500,10};
