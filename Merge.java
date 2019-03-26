@@ -4,8 +4,17 @@ import java.io.*;
 public class Merge{
 
   public static void mergesort(int[] data){
-  int[] info = data;
-  mergesort(data, info, 0, data.length); // merge both arrays from start to end
+  int[] array = new int[data.length];
+  for(int ind = 0; ind < array.length; ind++){
+    array[ind]= data[ind];
+  }
+  if( array.length < 50){
+    insertionSort(array);
+  }
+  else{
+    mergesort(data, array, 0, data.length - 1);
+
+  }
   }
 
   public static void mergesort(int[]data, int[] data2, int low, int high){
@@ -41,7 +50,7 @@ public class Merge{
           rightInd++;
         }
       }
-    }
+    }}
 
     // Pseudo code
     /*mergesort(data,lo,hi):
@@ -51,7 +60,16 @@ public class Merge{
     mergesort right side
     merge */
 
-
+    public static void insertionSort(int[] data){
+    for (int x = 1; x < data.length; x++){
+      int current = data[x];
+      int counter = x;
+      while(counter > 0 && data[counter - 1] > current){
+        data[counter] = data[counter - 1];
+        counter --;
+      }
+      data[counter] = current;
+    }
   }
 
   public static void swap(int[] ary, int one, int two){
