@@ -65,45 +65,41 @@ public class Merge{
   }
 
   public static void glue (int[] data, int[] data2, int pivot, int low, int high){
-    int leftInd = low;
-    int rightInd = pivot;
-
-    for(int ind = 0; ind < data.length; ind++){
-      if(leftInd < pivot && rightInd < high){ //there're numbers still left in each side
-      if(data[leftInd] <= data[rightInd]){
-        data2[ind] = data[leftInd];
+    int leftInd = 0;
+    int rightInd = 0;
+    while(leftInd < pivot - lo + 1 && rightInd < high - pivot){
+      int low = leftInd + lo;
+      if(temp[low] < temp[rightInd + pivot + 1]){
+        data[low + rightInd] = temp[low];
         leftInd++;
       }
       else{
-        data2[ind] = data[rightInd];
+        data[low + rightInd] = temp[rightInd + pivot + 1];
         rightInd++;
       }
     }
-    else{
-      if(leftInd < pivot){
-        data2[ind] = data[leftInd];
-        leftInd++;
+    while(leftInd < pivot - low + 1){
+      data[lo + leftInd + rightInd] = temp[lo + leftInd];
+      leftInd++;
       }
-      else{
-        data2[ind] = data[rightInd];
-        rightInd++;
-      }
+    while(rightInd < high - pivot){
+      data[lo + leftInd + rightInd] = temp[rightInd + pivot + 1];
+      rightInd++;
     }
-  }
 }
 
 // Pseudo code
-/*mergesort(data,lo,hi):
-if lo >= hi :
+/*mergesort(data,lo,high):
+if lo >= high :
 return
 mergesort left side
 mergesort right side
 merge */
 
 public static void insertionSort(int[] data){
-  for (int x = 1; x < data.length; x++){
-    int current = data[x];
-    int counter = x;
+  for (int ind = 1; ind < data.length; ind++){
+    int current = data[ind];
+    int counter = ind;
     while(counter > 0 && data[counter - 1] > current){
       data[counter] = data[counter - 1];
       counter --;
